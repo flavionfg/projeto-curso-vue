@@ -1,15 +1,16 @@
 <template>
     <v-app>
-        <login-page />
+        <router-view />
+
+        <feedback />
     </v-app>
 </template>
 
 <script>
-    import LoginPage from './components/Login/LoginPage.vue';
+    import Feedback from './components/feedback/Feedback.vue';
 
     export default {
-        // AIzaSyAxq8DWcJn0X677bwo__3kDVRFE7UGCX2g
         name: 'App',
-        components: { LoginPage },
+        components: { Feedback },
     };
 </script>
