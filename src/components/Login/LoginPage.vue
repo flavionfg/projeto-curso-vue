@@ -27,15 +27,11 @@
 </template>
 
 <script>
-    // AIzaSyAxq8DWcJn0X677bwo__3kDVRFE7UGCX2g
-
     export default {
         name: 'LoginPage',
         data() {
             return {
-                token: '',
-                message: '',
-                showMessage: false,
+                token: 'AIzaSyAxq8DWcJn0X677bwo__3kDVRFE7UGCX2g',
             };
         },
         methods: {
