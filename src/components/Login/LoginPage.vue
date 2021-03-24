@@ -7,14 +7,15 @@
                     <v-text-field label="Token" v-model="token"></v-text-field>
 
                     <v-btn depresed
-                           dark color="green"
+                           dark
+                           color="primary"
                            block
                            class="mb-2"
                            @click="login">
                         Login
                     </v-btn>
                     <v-btn text
-                           color="blue"
+                           color="secondary"
                            @click="loginGuest">Entrar como visitante
                     </v-btn>
                 </v-col>
@@ -41,12 +42,14 @@
             login() {
                 if (this.token) {
                     this.$store.commit('setAuthToken', this.token);
+                    this.$store.commit('setLogged', true);
                     this.$router.push('/book');
                 } else {
                     this.$store.commit('showErrorMessage', 'Você deve informar um token');
                 }
             },
             loginGuest() {
+                this.$store.commit('setLogged', true);
                 this.$router.push('/book');
             },
         },
