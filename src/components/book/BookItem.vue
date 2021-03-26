@@ -1,0 +1,62 @@
+<template>
+    <v-card class="mx-auto" book-card>
+        <div
+            v-if="book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail"
+            class="text-center pt-3"
+        >
+            <img :src="book.volumeInfo.imageLinks.smallThumbnail">
+        </div>
+        <v-card-title><span>{{ book.volumeInfo.title.substring(0,20) }}</span></v-card-title>
+        <span v-if="book.volumeInfo.title.length > maxTitleLengh">...</span>
+        <v-card-title>
+            {{ book.volumeInfo.subtitle || "Sem descição" }}
+        </v-card-title>
+
+        <v-card-actions>
+            <v-btn text
+                   small
+                   color="primary"
+                   @click="goToDetails"
+            >
+                Ver Detalhes
+            </v-btn>
+            <v-btn v-if="book.volumeInfo.previewLink"
+                   text
+                   small
+                   color="primary"
+                   @click="goToPreview"
+            >
+                Ver Preview
+            </v-btn>
+        </v-card-actions>
+    </v-card>
+</template>
+
+<script>
+    export default {
+        name: 'BookItem',
+        props: {
+            book: { type: Object, required: true },
+        },
+        data() {
+            return {
+                maxTitleLengh: 20,
+            };
+        },
+        methods: {
+            goToDetails() {
+
+            },
+            goToPreview() {
+                window.open(this.book.volumeInfo.previewLink, '_blank');
+            },
+        },
+    };
+</script>
+
+<style scoped>
+    .book-card{
+        height: 100%;
+    }
+
+</style>
