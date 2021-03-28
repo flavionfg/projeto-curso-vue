@@ -2,19 +2,15 @@
     <div>
         <v-row>
             <v-col cols="12">
-                <v-text-field v-model="textSearch" label="Pesquise algo..."
-                              @input="doSearch"
-                />
+                <search-imput-field @search="doSearch"/>
             </v-col>
         </v-row >
 
-        <v-row justify=center v-if="!textSearch">
-            <v-col
-                cols="12"
-                md="4"
-                class="text-center"
+        <v-row justify=center v-if="!bookList.length">
+            <v-col cols="12" md="4" class="text-center"
             >
-                <p class="overline">Digite algo para iniciar a pesquisa.</p>
+                <p class="overline">Digite algo para iniciar a pesquisa.
+                    ou pesquise alguma outra coisa.</p>
             </v-col>
         </v-row>
 
@@ -37,21 +33,21 @@
 
     import Loading from '../loading/Loading.vue';
     import BookItem from './BookItem.vue';
+    import SearchImputField from '../search/SearchImputField.vue';
 
     export default {
         name: 'BookList',
-        components: { Loading, BookItem },
+        components: { SearchImputField, Loading, BookItem },
         mixins: [api],
         data() {
             return {
-                textSearch: '',
                 bookList: [],
                 searchOnGoing: false,
             };
         },
         methods: {
-            doSearch() {
-                if (this.textSearch) {
+            doSearch(textSearch) {
+                if (textSearch) {
                     this.searchOnGoing = true;
 
                     this.get(`/volumes?q=${this.textSearch}`).then((response) => {
