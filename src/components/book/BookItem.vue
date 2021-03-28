@@ -45,7 +45,7 @@
         },
         methods: {
             goToDetails() {
-
+                this.$router.push(`/book/${this.book.id}`);
             },
             goToPreview() {
                 window.open(this.book.volumeInfo.previewLink, '_blank');
