@@ -54,20 +54,20 @@
     </v-container>
 </template>
 <script>
-    import bookService from './bookService';
+    import api from '../api/api';
 
-    const axios = require('axios');
+    import bookService from './bookService';
 
     export default {
         name: 'BookEntryPage',
-        mixins: [bookService],
+        mixins: [api, bookService],
         data() {
             return {
                 book: {},
             };
         },
         created() {
-            axios.get(`https://www.googleapis.com/books/v1/volumes/${this.$route.params.id}`).then((response) => {
+            this.get(`/volumes/${this.$route.params.id}`).then((response) => {
                 this.book = response.data;
             });
         },
