@@ -44,7 +44,7 @@
                         <v-subheader>Ações</v-subheader>
                         <v-divider class="mb-2"></v-divider>
 
-                        <v-btn text color="primary" @click="goToPreview">
+                        <v-btn text color="primary" @click="goToPreview(book)">
                             Ver Preview
                         </v-btn>
                     </div>
@@ -54,10 +54,13 @@
     </v-container>
 </template>
 <script>
+    import bookService from './bookService';
+
     const axios = require('axios');
 
     export default {
         name: 'BookEntryPage',
+        mixins: [bookService],
         data() {
             return {
                 book: {},
@@ -71,9 +74,6 @@
         methods: {
             goBack() {
                 this.$router.push('/book');
-            },
-            goToPreview() {
-                window.open(this.book.volumeInfo.previewLink, '_blank');
             },
         },
     };
