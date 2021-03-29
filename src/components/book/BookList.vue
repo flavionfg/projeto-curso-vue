@@ -6,7 +6,7 @@
             </v-col>
         </v-row >
 
-        <v-row justify=center v-if="!bookList.length">
+        <v-row v-if="!bookList.length" justify=center >
             <v-col cols="12" md="4" class="text-center"
             >
                 <p class="overline">Digite algo para iniciar a pesquisa.
@@ -30,7 +30,6 @@
 
 <script>
     import api from '../api/api';
-
     import Loading from '../loading/Loading.vue';
     import BookItem from './BookItem.vue';
     import SearchImputField from '../search/SearchImputField.vue';
@@ -49,9 +48,10 @@
             doSearch(textSearch) {
                 if (textSearch) {
                     this.searchOnGoing = true;
-
-                    this.get(`/volumes?q=${this.textSearch}`).then((response) => {
+                    this.get(`/volumes?q=${textSearch}`).then((response) => {
                         this.bookList = response.data.items;
+                        this.searchOnGoing = false;
+                    }).catch(() => {
                         this.searchOnGoing = false;
                     });
                 } else {

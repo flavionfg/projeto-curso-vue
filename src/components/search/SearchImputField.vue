@@ -21,6 +21,7 @@
                 setTimeout(() => {
                     if (new Date().getTime() >= this.lastChance + this.delay) {
                         this.$emit('search', this.textSearch);
+                        console.log(this.textSearch);
                     }
                 }, this.delay);
             },
