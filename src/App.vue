@@ -16,5 +16,12 @@
     export default {
         name: 'App',
         components: { Feedback, AppHeader },
+        created() {
+            if (window.localStorage.authToken) {
+                this.$store.commit('setAuthToken', window.LocalStorage.authToken);
+            } else {
+                this.$router.push('/');
+            }
+        },
     };
 </script>

@@ -37,6 +37,7 @@
         methods: {
             login() {
                 if (this.token) {
+                    window.localStorage.authToken = this.token;
                     this.$store.commit('setAuthToken', this.token);
                     this.$store.commit('setLogged', true);
                     this.$router.push('/book');
