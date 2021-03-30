@@ -26,13 +26,15 @@
         mixins: [api],
         data() {
             return {
-                shelfList: [{ title: 'Estante de Teste' }],
+                shelfList: [],
                 searchOnGoing: false,
             };
         },
         created() {
-            this.get('').then((response) => {
-                console.log(response);
+            this.searchOnGoing = true;
+            this.get('/users/111811248547923307733/bookshelves').then((response) => {
+                this.shelfList = response.data.items;
+                this.searchOnGoing = false;
             });
         },
     };
