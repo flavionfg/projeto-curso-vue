@@ -1,13 +1,6 @@
 <template>
     <v-container fluid>
-        <v-row justify="end">
-            <v-col cols="12" md="2">
-                <v-btn text block @click="goBack">
-                    Voltar
-                </v-btn>
-            </v-col>
-
-        </v-row>
+        <back-button />
         <v-row v-if="book && book.volumeInfo">
             <v-col v-if="book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail"
                    cols="12" md="3" class="text-center">
@@ -57,9 +50,11 @@
     import api from '../api/api';
 
     import bookService from './bookService';
+    import BackButton from '../navigation/BackButton.vue';
 
     export default {
         name: 'BookEntryPage',
+        components: { BackButton },
         mixins: [api, bookService],
         data() {
             return {
@@ -70,11 +65,6 @@
             this.get(`/volumes/${this.$route.params.id}`).then((response) => {
                 this.book = response.data;
             });
-        },
-        methods: {
-            goBack() {
-                this.$router.push('/book');
-            },
         },
     };
 </script>
