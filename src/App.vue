@@ -22,8 +22,9 @@
         created() {
             this.createInterceptors();
 
-            if (window.localStorage.authToken) {
+            if (window.localStorage.authToken && window.localStorage.userId) {
                 this.$store.commit('setAuthToken', window.LocalStorage.authToken);
+                this.$store.commit('setAuthToken', window.LocalStorage.userId);
             } else {
                 this.$router.push('/');
             }

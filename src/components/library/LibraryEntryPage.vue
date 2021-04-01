@@ -36,10 +36,10 @@
             };
         },
         created() {
-            this.get(`/users/111811248547923307733/bookshelves/${this.$route.params.id}`).then((response) => {
+            this.get(`/users/${this.$store.state.userId}/bookshelves/${this.$route.params.id}`).then((response) => {
                 this.shelf = response.data;
             });
-            this.get(`/users/111811248547923307733/bookshelves/${this.$route.params.id}/volumes`).then((response) => {
+            this.get(`/users/${this.$store.state.userId}/bookshelves/${this.$route.params.id}/volumes`).then((response) => {
                 this.shelf = response.data.items;
             });
         },

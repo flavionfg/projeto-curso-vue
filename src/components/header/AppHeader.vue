@@ -42,7 +42,7 @@
             logout() {
                 window.localStorage.authToken = '';
                 this.$store.commit('setAuthToken', '');
-                this.$store.commit('setLogged', false);
+                this.$store.commit('setUserId', '');
                 this.$router.push('/');
             },
         },

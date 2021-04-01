@@ -32,7 +32,7 @@
         },
         created() {
             this.searchOnGoing = true;
-            this.get('/users/111811248547923307733/bookshelves').then((response) => {
+            this.get(`/users/${this.$store.state.userId}/bookshelves`).then((response) => {
                 this.shelfList = response.data.items;
                 this.searchOnGoing = false;
             });
