@@ -1,9 +1,9 @@
 <template>
     <v-btn
-            text
-            small
-            color="primary"
-            @click="goToDetails"
+        text
+        small
+        color="primary"
+        @click="goToDetails"
     >
         Ver Detalhes
     </v-btn>
